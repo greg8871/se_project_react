@@ -3,7 +3,6 @@ import ItemModal from "../ItemModal/itemmodal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./App.css";
 import { location, APIKey } from "../../utils/constants";
-import { defaultClothingItems } from "../../utils/clothingItems";
 import Header from "../Header/header";
 import Main from "../Main/main";
 import Footer from "../Footer/footer";
@@ -14,9 +13,9 @@ import {
 
 const App = () => {
   const [weatherData, setWeatherData] = React.useState({});
-  const [clothingItems, setclothingItems] = React.useState({});
+  const [clothingItems, setClothingItems] = React.useState({});
   const [activeModal, setActiveModal] = useState();
-  const [selectedCard, setselectedCard] = React.useState(null);
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
