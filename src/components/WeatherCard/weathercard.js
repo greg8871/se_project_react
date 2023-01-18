@@ -1,5 +1,3 @@
-import "./WeatherCard.css";
-
 const DAY_HOUR = 6;
 const NIGHT_HOUR = 17;
 

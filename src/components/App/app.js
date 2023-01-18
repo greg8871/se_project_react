@@ -1,20 +1,21 @@
 import { defaultClothingItems } from "../../utils/clothingItems";
-import ItemModal from "../ItemModal/itemmodal";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./App.css";
+import React from "react";
+import ItemModal from "../ItemModal/Itemmodal";
+import ModalWithForm from "../ModalWithForm/Modalwithform";
+import "./app.css";
 import { location, APIKey } from "../../utils/constants";
-import Header from "../Header/header";
-import Main from "../Main/main";
-import Footer from "../Footer/footer";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
 import {
   getForecastWeather,
   filterDataFromWeatherAPI,
 } from "../../utils/weatherApi";
-
+/* const sectretKey = ""; */
 const App = () => {
   const [weatherData, setWeatherData] = React.useState({});
   const [clothingItems, setClothingItems] = React.useState({});
-  const [activeModal, setActiveModal] = useState();
+  const [activeModal, setActiveModal] = React.useState();
   const [selectedCard, setSelectedCard] = React.useState(null);
 
   const handleCardClick = (card) => {
@@ -26,7 +27,7 @@ const App = () => {
   };
   React.useEffect(() => {
     if (location.latitude && location.longitude) {
-      getForecastWeather(location, sectretKey)
+      getForecastWeather(location, APIKey)
         .then((data) => {
           setWeatherData(filterDataFromWeatherAPI(data));
         })

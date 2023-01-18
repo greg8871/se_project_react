@@ -1,5 +1,3 @@
-import "./ItemModal.css";
-
 function ItemModal({ isOpen, name, card, onClose }) {
   return (
     <div

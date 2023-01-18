@@ -1,7 +1,7 @@
 import React from "react";
 import "../Main/main.css";
-import ItemCard from "../ItemCard/itemcard";
-import WeatherCard from "../WeatherCard/weathercard";
+import ItemCard from "../ItemCard/Itemcard";
+import WeatherCard from "../WeatherCard/Weathercard";
 
 function Main({ weatherData, cards, onCardClick }) {
   const actualWeather = weatherData.temperature;
@@ -16,3 +16,4 @@ function Main({ weatherData, cards, onCardClick }) {
     }
   };
 }
+export default Main;
