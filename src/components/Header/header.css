@@ -17,12 +17,14 @@
 
 .header__date {
   margin-right: auto;
+  font-size: 20px;
   grid-area: b;
 }
 
 .header__add-button {
   margin-right: 20px;
   border: 0;
+  font-weight: 700;
   background-color: transparent;
   grid-area: c;
 }
@@ -34,6 +36,9 @@
 .header__user-name {
   margin-right: 12px;
   grid-area: d;
+  
+  font-size: 20px;
+
 }
 
 .header__user-icon {

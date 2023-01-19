@@ -81,6 +81,7 @@ const App = () => {
           name="new-card"
           onClose={closeAllModals}
           isOpen={activeModal === "create"}
+          buttonText="add garment"
         >
           <label className="modal__label">
             <input
@@ -147,8 +148,12 @@ const App = () => {
           </div>
         </ModalWithForm>
       )}
-      {activeModal === "preview" && (
-        <ItemModal card={selectedCard} onClose={closeAllModals} />
+      {activeModal === "item" && (
+        <ItemModal
+          card={selectedCard}
+          isOpen={activeModal === "item"}
+          onClose={closeAllModals}
+        />
       )}
     </div>
   );

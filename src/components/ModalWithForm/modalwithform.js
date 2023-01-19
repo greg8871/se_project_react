@@ -14,7 +14,6 @@ function ModalWithForm({ isOpen, type, title, buttonText, onClose, children }) {
           <button
             className="modal__form-submit-btn modal__form-submit-btn_disabled"
             type="submit"
-            disabled
           >
             {buttonText}
           </button>
