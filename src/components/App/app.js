@@ -14,7 +14,7 @@ import {
 /* const sectretKey = ""; */
 const App = () => {
   const [weatherData, setWeatherData] = React.useState({});
-  const [clothingItems, setClothingItems] = React.useState({});
+  /* const [clothingItems, setClothingItems] = React.useState({}); */
   const [activeModal, setActiveModal] = React.useState();
   const [selectedCard, setSelectedCard] = React.useState(null);
 
@@ -22,9 +22,7 @@ const App = () => {
     setSelectedCard(card);
     setActiveModal("item");
   };
-  const closeAllModals = () => {
-    setActiveModal();
-  };
+
   React.useEffect(() => {
     if (location.latitude && location.longitude) {
       getForecastWeather(location, APIKey)
@@ -35,8 +33,34 @@ const App = () => {
     }
   }, []);
   React.useEffect(() => {
-    setClothingItems(defaultClothingItems);
+    function handleEscape(evt) {
+      if (evt.code === "Escape") {
+        closeAllModals();
+      }
+    }
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, []);
+  /*  React.useEffect(() => {
+    setClothingItems(defaultClothingItems);
+  }, []); */
+  React.useEffect(() => {
+    function handleOverlay(evt) {
+      if (
+        evt.target.classList.contains("modal") ||
+        evt.target.classList.contains("popup")
+      ) {
+        closeAllModals();
+      }
+    }
+    document.addEventListener("click", handleOverlay);
+    return () => document.removeEventListener("click", handleOverlay);
+  }, []);
+
+  const closeAllModals = () => {
+    setActiveModal();
+  };
+
   return (
     <div className="page">
       <div className="page__wrapper">
@@ -46,8 +70,8 @@ const App = () => {
         />
         <Main
           weatherData={weatherData}
-          cards={clothingItems}
-          onCardClick={handleCardClick}
+          defaultClothing={defaultClothingItems}
+          handleCardClick={handleCardClick}
         />
         <Footer />
       </div>
@@ -56,6 +80,7 @@ const App = () => {
           title="New garment"
           name="new-card"
           onClose={closeAllModals}
+          isOpen={activeModal === "create"}
         >
           <label className="modal__label">
             <input
@@ -65,8 +90,8 @@ const App = () => {
               className="modal__input modal__input_type_card-name"
               placeholder="Title"
               required
-              minLenght="1"
-              maxLenght="30"
+              minLength="1"
+              maxLength="30"
             />
             <span className="modal__error" id="place-name-error"></span>
           </label>
@@ -85,6 +110,7 @@ const App = () => {
           <div className="modal__input modal__input_type_radio">
             <div>
               <input
+                className="modal__input_radio"
                 type="radio"
                 id="choiceHot"
                 name="weatherType"
@@ -96,6 +122,7 @@ const App = () => {
             </div>
             <div>
               <input
+                className="modal__input_radio"
                 type="radio"
                 id="choiceWarm"
                 name="wetharType"
@@ -107,6 +134,7 @@ const App = () => {
             </div>
             <div>
               <input
+                className="modal__input_radio"
                 type="radio"
                 id="choiceCold"
                 name="wetharType"

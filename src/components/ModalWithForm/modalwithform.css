@@ -10,6 +10,7 @@
     opacity: 1;
     transition: visibility 0s, opacity 0.5s linear;
     z-index: 2;
+    top:0;
   }
   
   .modal:hover {
@@ -69,37 +70,37 @@
     margin-bottom: 0px;
   }
   
-  .form__label {
+  .modal__label {
     margin-top: 24px;
     margin-bottom: 4px;
   }
   
-  .form__label_radio {
+  .modal__label_radio {
     margin-left: 8px;
     opacity: 50%;
   }
   
-  .form__input {
+  .modal__input {
     padding: 5px;
     border: none;
     border-bottom: black solid 1px;
   }
   
-  .form__radio {
+  /* .modal__radio {
     margin: 8px 0px;
-  }
+  } */
   
-  .form__input_radio {
+  .modal__input_radio {
     accent-color: black;
     opacity: 50%;
   }
   
-  .form__input_radio:hover {
+  .modal__input_radio:hover {
     cursor: pointer;
   }
   
-  .form__input_radio:checked,
-  .form__input_radio:checked + label {
+  .modal__input_radio:checked,
+  .modal__input_radio:checked + label {
     accent-color: black;
     opacity: 100%;
   }

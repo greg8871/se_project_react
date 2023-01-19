@@ -15,8 +15,10 @@ const filterDataFromWeatherAPI = (data) => {
     return null;
   }
   const weather = {};
-  weather.city = data.location.name;
-  weather.temperature = data.current.temp_f;
+
+  weather.city = data.name;
+  weather.temperature = data.main.temp;
+
   return weather;
 };
 
