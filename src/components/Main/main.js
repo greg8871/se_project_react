@@ -1,12 +1,12 @@
 import "../Main/main.css";
-import ItemCard from "../ItemCard/Itemcard";
-import WeatherCard from "../WeatherCard/Weathercard";
+import ItemCard from "../ItemCard/ItemCard";
+import WeatherCard from "../WeatherCard/WeatherCard";
+
+const HOT_WEATHER = 86;
+const COLD_WEATHER = 64;
 
 function Main({ weatherData, defaultClothing, handleCardClick }) {
   const currentWeather = weatherData.temperature;
-
-  const HOT_WEATHER = 86;
-  const COLD_WEATHER = 64;
 
   const getWeatherType = () => {
     if (currentWeather >= HOT_WEATHER) {

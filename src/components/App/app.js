@@ -1,7 +1,7 @@
 import { defaultClothingItems } from "../../utils/clothingItems";
 import React from "react";
-import ItemModal from "../ItemModal/Itemmodal";
-import ModalWithForm from "../ModalWithForm/Modalwithform";
+import ItemModal from "../ItemModal/ItemModal";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./app.css";
 import { location, APIKey } from "../../utils/constants";
 import Header from "../Header/Header";
