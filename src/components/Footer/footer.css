@@ -9,7 +9,7 @@
   max-width: 1360px;
   position: sticky;
   flex-shrink: 0;
-  margin: auto;
+  margin: 200px;
 }
 
 @media screen and (max-width: 370px) {

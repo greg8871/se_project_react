@@ -58,7 +58,7 @@ const App = () => {
   }, []);
 
   const closeAllModals = () => {
-    setActiveModal();
+    setActiveModal("");
   };
 
   return (
