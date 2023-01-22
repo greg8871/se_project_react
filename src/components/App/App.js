@@ -15,7 +15,7 @@ import {
 const App = () => {
   const [weatherData, setWeatherData] = React.useState({});
   /* const [clothingItems, setClothingItems] = React.useState({}); */
-  const [activeModal, setActiveModal] = React.useState();
+  const [activeModal, setActiveModal] = React.useState("");
   const [selectedCard, setSelectedCard] = React.useState(null);
 
   const handleCardClick = (card) => {
