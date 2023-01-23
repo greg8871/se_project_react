@@ -2,7 +2,7 @@ import { defaultClothingItems } from "../../utils/clothingItems";
 import React from "react";
 import ItemModal from "../ItemModal/ItemModal";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./app.css";
+import "./App.css";
 import { location, APIKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -62,7 +62,7 @@ const App = () => {
   };
 
   return (
-    <div className="page">
+    <div className="App">
       <div className="page__wrapper">
         <Header
           weatherData={weatherData}

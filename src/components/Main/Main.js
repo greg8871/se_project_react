@@ -1,4 +1,4 @@
-import "../Main/main.css";
+import "../Main/Main.css";
 import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
 

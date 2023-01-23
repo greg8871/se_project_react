@@ -1,4 +1,4 @@
-import "./itemcard.css";
+import "./ItemCard.css";
 
 const ItemCard = ({ clothingChoice, onClick }) => {
   return (
