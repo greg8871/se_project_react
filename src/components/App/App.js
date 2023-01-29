@@ -82,6 +82,17 @@ const App = () => {
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
   };
+  const fetchClothingItems = () => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchClothingItems();
+  }, []);
   const handleAddItemSubmit = (name, imageUrl, weatherType) => {
     addItem(name, imageUrl, weatherType)
       .then((item) => {
