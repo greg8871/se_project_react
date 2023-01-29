@@ -1,12 +1,17 @@
 import "../Main/Main.css";
 import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
-
-const HOT_WEATHER = 86;
-const COLD_WEATHER = 64;
+import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherData, defaultClothing, handleCardClick }) {
-  const currentWeather = weatherData.temperature;
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  const currentWeather =
+    currentTemperatureUnit === "F"
+      ? weatherData?.temperature?.F
+      : weatherData?.temperature?.C;
+
+  const HOT_WEATHER = 86;
+  const COLD_WEATHER = 64;
 
   const getWeatherType = () => {
     if (currentWeather >= HOT_WEATHER) {
@@ -35,7 +40,7 @@ function Main({ weatherData, defaultClothing, handleCardClick }) {
 
   return (
     <main className="main">
-      <WeatherCard weatherData={weatherData} />
+      <WeatherCard weatherData={weatherData} currentWeather={currentWeather} />
       <h3 className="main__header">
         Today is {Math.round(currentWeather)}&deg;F / You may want to wear:
       </h3>

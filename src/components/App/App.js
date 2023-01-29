@@ -1,7 +1,11 @@
-import { defaultClothingItems } from "../../utils/clothingItems";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Route } from "react-router-dom";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnitContext";
 import ItemModal from "../ItemModal/ItemModal";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { getItems, addItem, deleteItem } from "../../utils/Api";
+import Profile from "../Profile/Profile";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import "./App.css";
 import { location, APIKey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -11,19 +15,20 @@ import {
   getForecastWeather,
   filterDataFromWeatherAPI,
 } from "../../utils/weatherApi";
-/* const sectretKey = ""; */
+
 const App = () => {
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [weatherData, setWeatherData] = React.useState({});
-  /* const [clothingItems, setClothingItems] = React.useState({}); */
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = React.useState("");
   const [selectedCard, setSelectedCard] = React.useState(null);
-
+  const baseUrl = "http://localhost:3001";
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal("item");
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (location.latitude && location.longitude) {
       getForecastWeather(location, APIKey)
         .then((data) => {
@@ -32,129 +37,113 @@ const App = () => {
         .catch((err) => console.log(err));
     }
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     function handleEscape(evt) {
       if (evt.code === "Escape") {
-        closeAllModals();
+        closeModal();
       }
     }
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
-  /*  React.useEffect(() => {
-    setClothingItems(defaultClothingItems);
-  }, []); */
-  React.useEffect(() => {
+
+  useEffect(() => {
     function handleOverlay(evt) {
       if (
         evt.target.classList.contains("modal") ||
         evt.target.classList.contains("popup")
       ) {
-        closeAllModals();
+        closeModal();
       }
     }
     document.addEventListener("click", handleOverlay);
     return () => document.removeEventListener("click", handleOverlay);
   }, []);
 
-  const closeAllModals = () => {
+  const closeModal = () => {
     setActiveModal("");
+  };
+  const handleCardDelete = () => {
+    deleteItem(selectedCard.id)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => item.id !== selectedCard.id)
+        );
+        setSelectedCard({});
+        closeModal();
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleDeleteClick = () => {
+    setActiveModal("confirm");
+  };
+  const handleToggleSwitchChange = () => {
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
+  };
+  const handleAddItemSubmit = (name, imageUrl, weatherType) => {
+    addItem(name, imageUrl, weatherType)
+      .then((item) => {
+        const items = [item, ...clothingItems];
+        setClothingItems(items);
+        closeModal();
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <div className="App">
-      <div className="page__wrapper">
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+      >
         <Header
           weatherData={weatherData}
-          handleAddClick={() => setActiveModal("create")}
+          openModal={() => {
+            setActiveModal("add");
+          }}
         />
-        <Main
-          weatherData={weatherData}
-          defaultClothing={defaultClothingItems}
-          handleCardClick={handleCardClick}
-        />
+        <Route exact path={"/"}>
+          <Main
+            weatherData={weatherData}
+            clothingItems={clothingItems}
+            handleCardClick={handleCardClick}
+          />
+        </Route>
+        <Route path={"/profile"}>
+          <Profile
+            weatherData={weatherData}
+            clothingItems={clothingItems}
+            handleCardClick={handleCardClick}
+            openModal={() => {
+              setActiveModal("add");
+            }}
+          />
+        </Route>
         <Footer />
-      </div>
-      {activeModal === "create" && (
-        <ModalWithForm
-          title="New garment"
-          name="new-card"
-          onClose={closeAllModals}
-          isOpen={activeModal === "create"}
-          buttonText="add garment"
-        >
-          <label className="modal__label">
-            <input
-              type="text"
-              name="link"
-              id="place-link"
-              className="modal__input modal__input_type_card-name"
-              placeholder="Title"
-              required
-              minLength="1"
-              maxLength="30"
-            />
-            <span className="modal__error" id="place-name-error"></span>
-          </label>
-          <label className="modal__label">
-            <input
-              type="url"
-              name="link"
-              id="place-link"
-              className="modal__input modal__input_type_url"
-              placeholder="Image URL"
-              required
-            />
-            <span className="modal__error" id="place-link-error"></span>
-          </label>
-          <p>Select the weather type</p>
-          <div className="modal__input modal__input_type_radio">
-            <div>
-              <input
-                className="modal__input_radio"
-                type="radio"
-                id="choiceHot"
-                name="weatherType"
-                value="hot"
-              />
-              <label className="modal__label_radio" htmlFor="choiceHot">
-                Hot
-              </label>
-            </div>
-            <div>
-              <input
-                className="modal__input_radio"
-                type="radio"
-                id="choiceWarm"
-                name="wetharType"
-                value="warm"
-              />
-              <label className="modal__label_radio" htmlFor="choiceWarm">
-                Warm
-              </label>
-            </div>
-            <div>
-              <input
-                className="modal__input_radio"
-                type="radio"
-                id="choiceCold"
-                name="wetharType"
-                value="cold"
-              />
-              <label className="modal__label_radio" htmlFor="choiceCold">
-                Cold
-              </label>
-            </div>
-          </div>
-        </ModalWithForm>
-      )}
-      {activeModal === "item" && (
-        <ItemModal
-          card={selectedCard}
-          isOpen={activeModal === "item"}
-          onClose={closeAllModals}
+
+        <AddItemModal
+          isOpen={activeModal === "add"}
+          type={"add"}
+          onAddItem={handleAddItemSubmit}
+          onCloseModal={closeModal}
         />
-      )}
+
+        <ItemModal
+          isOpen={activeModal === "item"}
+          type={"item"}
+          card={selectedCard}
+          onCloseModal={closeModal}
+          onDeleteClick={handleDeleteClick}
+        />
+
+        <ConfirmationModal
+          isOpen={activeModal === "confirm"}
+          type={"confirm"}
+          onCloseModal={closeModal}
+          onCardDelete={handleCardDelete}
+        />
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 };
