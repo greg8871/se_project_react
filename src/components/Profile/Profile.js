@@ -1,20 +1,18 @@
 import "./Profile.css";
-import SideBar from "../SideBar/SideBar";
+import React from "react";
 import ClothesSection from "../ClothesSection/ClothesSection";
+import SideBar from "../SideBar/SideBar";
 
-const Profile = ({ cards, onCardClick, onCardDelete, onAddNewClick }) => (
-  <div className="profile">
-    <section className="profile-sidebar">
+function Profile({ clothingItems, openModal, handleCardClick }) {
+  return (
+    <div className="profile">
       <SideBar />
-    </section>
-    <section className="profile-clothes">
       <ClothesSection
-        sectionData={cards}
-        onAddNewClick={onAddNewClick}
-        onCardClick={onCardClick}
-        onCardDelete={onCardDelete}
+        clothingItems={clothingItems}
+        openModal={openModal}
+        handleCardClick={handleCardClick}
       />
-    </section>
-  </div>
-);
+    </div>
+  );
+}
 export default Profile;

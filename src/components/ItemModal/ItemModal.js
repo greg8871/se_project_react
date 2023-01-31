@@ -1,4 +1,6 @@
-function ItemModal({ isOpen, name, card, onClose }) {
+import "./ItemModal.css";
+
+function ItemModal({ isOpen, name, card, onClose, onDeleteClick }) {
   return (
     <div
       className={
@@ -7,9 +9,14 @@ function ItemModal({ isOpen, name, card, onClose }) {
     >
       <div className="popup__body">
         <button className="popup__close-btn" onClick={onClose} />
-        <img className="popup__image" src={card.link} alt={card.name} />
-        <h3 className="popup__name">{card.name}</h3>
-        <p className="popup__weather">Weather: {card.weather}</p>
+        <img className="popup__image" src={card?.imageUrl} alt={card?.name} />
+        <div className="popup__info">
+          <h3 className="popup__name">{card?.name}</h3>
+          <button className="popup__delete-btn" onClick={onDeleteClick}>
+            Delete item
+          </button>
+          <p className="popup__weather">Weather: {card?.weather}</p>
+        </div>
       </div>
     </div>
   );

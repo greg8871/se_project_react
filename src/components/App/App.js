@@ -18,11 +18,11 @@ import {
 
 const App = () => {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [weatherData, setWeatherData] = React.useState({});
+  const [weatherData, setWeatherData] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
-  const [activeModal, setActiveModal] = React.useState("");
-  const [selectedCard, setSelectedCard] = React.useState(null);
-  const baseUrl = "http://localhost:3001";
+  const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState(null);
+  /*  const baseUrl = "http://localhost:3001"; */
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal("item");
@@ -51,7 +51,8 @@ const App = () => {
     function handleOverlay(evt) {
       if (
         evt.target.classList.contains("modal") ||
-        evt.target.classList.contains("popup")
+        evt.target.classList.contains("popup") ||
+        evt.target.classList.contains("confirm-modal")
       ) {
         closeModal();
       }
@@ -117,7 +118,7 @@ const App = () => {
         <Route exact path={"/"}>
           <Main
             weatherData={weatherData}
-            clothingItems={clothingItems}
+            defaultClothing={clothingItems}
             handleCardClick={handleCardClick}
           />
         </Route>

@@ -58,8 +58,25 @@
   
   .popup__image {
     width: 498px;
+    height: 498px;
+    object-fit: cover;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
+  }
+  .popup__info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 25px auto auto 32px;
+    row-gap: 12px;
+  }
+  .popup__delete-btn {
+    color: #ff4d00;
+    transition: 0.2s;
+    justify-self: flex-end;
+    margin-right: 32px;
+    border: none;
+    background-color: inherit;
+    font-size: 20px;
   }
   
   .popup__name,

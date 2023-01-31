@@ -1,4 +1,5 @@
-import "../Main/Main.css";
+import "./Main.css";
+import React, { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnitContext";
@@ -27,22 +28,17 @@ function Main({ weatherData, defaultClothing, handleCardClick }) {
   };
 
   function filterClothing(card) {
-    if (card.weather === getWeatherType()) {
-      return true;
-    } else {
-      return false;
-    }
+    return card.weather === getWeatherType();
   }
 
-  const clothingChoices = defaultClothing.filter((items) =>
-    filterClothing(items)
-  );
+  const clothingChoices = defaultClothing.filter(filterClothing);
 
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} currentWeather={currentWeather} />
       <h3 className="main__header">
-        Today is {Math.round(currentWeather)}&deg;F / You may want to wear:
+        Today is{` ${currentWeather}°${currentTemperatureUnit} `} / You may want
+        to wear:
       </h3>
       <ul className="main__gallery">
         {clothingChoices.map((item) => (
@@ -50,9 +46,6 @@ function Main({ weatherData, defaultClothing, handleCardClick }) {
             isOpen="false"
             clothingChoice={item}
             key={item._id}
-            name={item.name}
-            image={item.link}
-            weather={item.weather}
             onClick={() => handleCardClick(item)}
           />
         ))}
