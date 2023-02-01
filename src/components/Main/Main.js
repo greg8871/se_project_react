@@ -14,7 +14,7 @@ function Main({ weatherData, defaultClothing, handleCardClick }) {
   const HOT_WEATHER = 86;
   const COLD_WEATHER = 64;
 
-  const getWeatherType = () => {
+  const getWeatherType = React.useMemo(() => {
     if (currentWeather >= HOT_WEATHER) {
       return "hot";
     } else if (
@@ -25,13 +25,13 @@ function Main({ weatherData, defaultClothing, handleCardClick }) {
     } else if (currentWeather <= COLD_WEATHER) {
       return "cold";
     }
-  };
+  }, [currentWeather]);
 
-  function filterClothing(card) {
-    return card.weather === getWeatherType();
-  }
-
-  const clothingChoices = defaultClothing.filter(filterClothing);
+  const clothingChoices = React.useMemo(
+    () => defaultClothing.filter((card) => card.weather === getWeatherType),
+    [getWeatherType]
+  );
+  console.log(clothingChoices);
 
   return (
     <main className="main">

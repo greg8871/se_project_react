@@ -10,15 +10,18 @@ const getForecastWeather = (location, APIKey) => {
   });
 };
 
-const filterDataFromWeatherAPI = (data) => {
-  if (!data) {
+const filterDataFromWeatherAPI = (res) => {
+  if (!res) {
     return null;
   }
   const weather = {};
 
-  weather.city = data.name;
-  weather.temperature = data.main.temp;
-
+  weather.city = res.name;
+  weather.temperature = {
+    F: `${Math.round(res.main.temp)}`,
+    C: `${Math.round((res.main.temp - 32) * 0.5556)}`,
+  };
+  weather.conditions = res.weather[0].main;
   return weather;
 };
 

@@ -4,7 +4,7 @@ import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnit
 const DAY_HOUR = 6;
 const NIGHT_HOUR = 17;
 
-function WeatherCard({ weatherData }) {
+function WeatherCard({ currentTemp, weatherData }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   if (!weatherData) return null;
 
@@ -59,7 +59,7 @@ function WeatherCard({ weatherData }) {
       )}_${checkForRain()}`}
     >
       <h2 className="weathercard__temp">
-        {Math.round(weatherData.temperature)}&deg;F
+        {` ${currentTemp}°${currentTemperatureUnit} `}
       </h2>
       <div className="weathercard__image-wrWeatherCarder">
         <img
