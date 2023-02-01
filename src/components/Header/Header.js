@@ -9,7 +9,7 @@ const currentDate = new Date().toLocaleString("default", {
   day: "numeric",
 });
 
-const Header = ({ weatherData, handleAddClick }) => {
+const Header = ({ weatherData, openModal, handleAddClick }) => {
   if (!weatherData) return null;
 
   const username = "Greg Cunningham";
@@ -24,7 +24,7 @@ const Header = ({ weatherData, handleAddClick }) => {
         </h2>
         <ToggleSwitch />
         <button
-          onClick={handleAddClick}
+          onClick={openModal}
           type="button"
           className="header__add-button"
         >
