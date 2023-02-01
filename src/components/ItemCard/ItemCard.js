@@ -2,7 +2,11 @@ import "./ItemCard.css";
 
 const ItemCard = ({ clothingChoice, onClick }) => {
   return (
-    <li className="item__card" onClick={onClick}>
+    <li
+      key={clothingChoice.id.toString()}
+      className="item__card"
+      onClick={onClick}
+    >
       <h5 className="item-card__title">{clothingChoice.name}</h5>
       <img
         className="item-card__image"

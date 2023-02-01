@@ -48,6 +48,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeModal }) => {
         placeholder="Name"
         minLength="1"
         maxLength="40"
+        value={name}
         required
       />
       <h4 className="form__label">Image</h4>
@@ -57,6 +58,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeModal }) => {
         name="image"
         type="url"
         placeholder="Image URL"
+        value={imageUrl}
         required
       />
       <h4 className="form__label">Select the weather type:</h4>
