@@ -1,8 +1,16 @@
-import "./ClothesSection.css";
-import React from "react";
-import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ clothingItems, handleCardClick, openModal }) {
+import "./ClothesSection.css";
+import React, { useContext } from "react";
+
+import ItemCard from "../ItemCard/ItemCard";
+import CurrentUserContext from "../../Contexts/CurrentUserContext";
+function ClothesSection({
+  clothingItems,
+  handleCardClick,
+  isLoggedIn,
+  openModal,
+}) {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <div className="profile__clothes-section">
       <div className="profile__clothes-section-header">
@@ -22,6 +30,14 @@ function ClothesSection({ clothingItems, handleCardClick, openModal }) {
             isOpen="false"
             clothingChoice={item}
             onClick={() => handleCardClick(item)}
+            isLoggedIn={isLoggedIn}
+            handleLikeClick={() => {
+              handleLikeClick(
+                item._id,
+                item.likes.includes(currentUser._id),
+                currentUser
+              );
+            }}
           />
         ))}
       </ul>

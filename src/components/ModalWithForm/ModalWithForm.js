@@ -7,6 +7,8 @@ function ModalWithForm({
   onClose,
   children,
   onSubmit,
+  isLoading,
+  disabled,
 }) {
   return (
     <div
@@ -19,15 +21,26 @@ function ModalWithForm({
         <h3 className="form__title">{title}</h3>
         <form className="modal__form" type={type} onSubmit={onSubmit}>
           {children}
-          <button
-            className="modal__form-submit-btn modal__form-submit-btn_disabled"
-            type="submit"
-          >
-            {buttonText}
-          </button>
+          {isLoading ? (
+            <button
+              className="modal__form-submit-btn modal__form-submit-btn_disabled"
+              type="submit"
+            >
+              Loading...
+            </button>
+          ) : (
+            <button
+              className="modal__form-submit-btn modal__form-submit-btn"
+              type="submit"
+              disabled={disabled}
+            >
+              {buttonText}
+            </button>
+          )}
         </form>
       </div>
     </div>
   );
 }
+
 export default ModalWithForm;

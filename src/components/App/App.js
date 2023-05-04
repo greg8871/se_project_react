@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../Contexts/CurrentUserContext";
 import ItemModal from "../ItemModal/ItemModal";
 import { getItems, addItem, deleteItem } from "../../utils/Api";
 import Profile from "../Profile/Profile";
@@ -27,6 +28,7 @@ const App = () => {
     setSelectedCard(card);
     setActiveModal("item");
   };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (location.latitude && location.longitude) {
@@ -157,6 +159,7 @@ const App = () => {
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
+    /* </CurrentUserContext.Provider> */
   );
 };
 
