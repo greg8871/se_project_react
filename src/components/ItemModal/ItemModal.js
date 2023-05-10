@@ -3,12 +3,13 @@ import "./ItemModal.css";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
 function ItemModal({ isOpen, name, card, onClose, onDeleteClick }) {
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = card.owner === currentUser._id;
+  // const isOwn = card.owner === currentUser._id;
 
   /* const popup__delete-btn  onClick={onDeleteClick}> */
-  const item = `item-modal__delete-btn ${
-    isOwn ? "item-modal__delete-btn_visible" : "item-modal__delete-btn_hidden"
-  }`;
+  // const item = `item-modal__delete-btn ${
+  //   isOwn ? "item-modal__delete-btn_visible" : "item-modal__delete-btn_hidden"
+  // }`;
+  const item = "";
   return (
     <div
       className={

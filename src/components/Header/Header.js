@@ -4,16 +4,17 @@ import "./Header.css";
 import logoPath from "../../images/wtwr.svg";
 import avatarDefault from "../../images/Avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-
+import CurrentUserContext from "../../Contexts/CurrentUserContext"
 const Header = ({
   weatherData,
   isLoggedIn,
   openAddModal,
   openLoginModal,
   openRegisterModal,
-  CurrentUserContext,
+  
 }) => {
   const currentUser = useContext(CurrentUserContext);
+  console.log({currentUser});
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -38,7 +39,7 @@ const Header = ({
           </button>
         )}
 
-        {isLoggedIn ? (
+      {/*   {isLoggedIn ? (
           <button className="header__btn" type="button" onClick={openAddModal}>
             + Add clothes
           </button>
@@ -46,7 +47,7 @@ const Header = ({
           <button className="header__btn" onClick={openRegisterModal}>
             Sign up
           </button>
-        )}
+        )} */}
 
         {isLoggedIn ? (
           <Link

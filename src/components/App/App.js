@@ -19,6 +19,7 @@ import {
 
 const App = () => {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [currentUser, setCurrentUser] = useState({});
   const [weatherData, setWeatherData] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
@@ -111,6 +112,12 @@ const App = () => {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
+         <CurrentUserContext.Provider
+        value={currentUser}
+      >
+
+     
+        
         <Header
           weatherData={weatherData}
           openModal={() => {
@@ -157,6 +164,7 @@ const App = () => {
           onClose={closeModal}
           onCardDelete={handleCardDelete}
         />
+         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
     </div>
     /* </CurrentUserContext.Provider> */
