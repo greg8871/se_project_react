@@ -51,6 +51,11 @@ function WeatherCard({ weatherData, currentWeather }) {
       return "precip";
     }
   }
+  function getTemperature() {
+    if (weatherData.temperature) {
+      return weatherData.temperature[currentTemperatureUnit];
+    }
+  }
 
   return (
     <div
@@ -59,7 +64,7 @@ function WeatherCard({ weatherData, currentWeather }) {
       )}_${checkForRain()}`}
     >
       <h2 className="weathercard__temp">
-        {` ${currentWeather}°${currentTemperatureUnit} `}
+        {` ${getTemperature()}°${currentTemperatureUnit} `}
       </h2>
       <div className="weathercard__image-wrWeatherCarder">
         <img

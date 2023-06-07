@@ -1,5 +1,20 @@
+import { useState } from "react";
 const location = { latitude: "38.8403", longitude: "-97.6114" };
 
 const APIKey = "19c12edd94a9003e6e2ed1135b28ba85";
-
-export { location, APIKey };
+const headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "http://localhost:3000",
+    Accept: "application/json",
+  };
+  export function useForm(inputValues) {
+    const [values, setValues] = useState(inputValues);
+  
+    const handleChange = (evt) => {
+      const { value, name } = evt.target;
+      setValues({ ...values, [name]: value });
+    };
+  
+    return { values, handleChange, setValues };
+  };
+export { location, APIKey, headers };

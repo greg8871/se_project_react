@@ -2,6 +2,9 @@ const baseUrl = "https://my-json-server.typicode.com/greg8871/se_project_react";
 const headers = {
   "Content-Type": "application/json",
 };
+function request(url, options) {
+  return fetch(url, options).then(handleServerResponse);
+}
 
 const handleServerResponse = (res) => {
   if (res.ok) {
@@ -39,5 +42,23 @@ const deleteItem = async (id) => {
   });
   return handleServerResponse(res);
 };
+const addCardLike = (_id) => {
+  return request(`${baseUrl}/items/${_id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
 
-export { getItems, addItem, deleteItem };
+const removeCardLike = (_id) => {
+  return request(`${baseUrl}/items/${_id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
+export { getItems, addItem, deleteItem, removeCardLike, addCardLike };

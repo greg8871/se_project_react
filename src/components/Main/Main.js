@@ -6,10 +6,7 @@ import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnit
 
 function Main({ weatherData, clothingItems, handleCardClick }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const currentWeather =
-    currentTemperatureUnit === "F"
-      ? weatherData?.temperature?.F
-      : weatherData?.temperature?.C;
+  const currentWeather = weatherData?.temperature?.F;
 
   const HOT_WEATHER = 86;
   const COLD_WEATHER = 64;
@@ -27,11 +24,11 @@ function Main({ weatherData, clothingItems, handleCardClick }) {
     }
   }, [currentWeather]);
 
-  const clothingChoices = React.useMemo(
+  /*  const clothingChoices = React.useMemo(
     () => clothingItems.filter((card) => card.weather === getWeatherType),
     [getWeatherType]
-  );
-  console.log(clothingChoices);
+  ); */
+  console.log(clothingItems);
 
   return (
     <main className="main">
@@ -41,14 +38,16 @@ function Main({ weatherData, clothingItems, handleCardClick }) {
         to wear:
       </h3>
       <ul className="main__gallery">
-        {clothingChoices.map((item) => (
-          <ItemCard
-            isOpen="false"
-            clothingChoice={item}
-            key={item.id.toString()}
-            onClick={() => handleCardClick(item)}
-          />
-        ))}
+        {clothingItems
+          .filter((card) => card.weather === getWeatherType)
+          .map((item) => (
+            <ItemCard
+              isOpen="false"
+              clothingChoice={item}
+              key={item.id.toString()}
+              onClick={() => handleCardClick(item)}
+            />
+          ))}
       </ul>
     </main>
   );
