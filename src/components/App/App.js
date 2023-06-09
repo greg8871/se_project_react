@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import ItemModal from "../ItemModal/ItemModal";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { getItems, addItem, deleteItem } from "../../utils/Api";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import "./App.css";
@@ -23,7 +23,11 @@ import { register, authorize, getUser, updateUser } from "../../utils/auth";
 import * as api from "../../utils/Api";
 const App = () => {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    avatar: "",
+    _id: "",
+  });
   const [weatherData, setWeatherData] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -115,8 +119,10 @@ const App = () => {
 
   const handleFormError = () => {
     setShowFormError(false);
+  };
   const handleCardDelete = () => {
-    api.deleteItem(selectedCard.id)
+    api
+      .deleteItem(selectedCard.id)
       .then(() => {
         setClothingItems(
           clothingItems.filter((item) => item.id !== selectedCard.id)
@@ -144,25 +150,14 @@ const App = () => {
       })
       .catch((err) => console.log(err));
   };
-  const handleToggleSwitchChange = () => {
-    currentTemperatureUnit === "F"
-      ? setCurrentTemperatureUnit("C")
-      : setCurrentTemperatureUnit("F");
-  };
-  const fetchClothingItems = () => {
-    api.getItems()
-      .then((data) => {
-        setClothingItems(data);
-      })
-      .catch((err) => console.log(err));
-  };
 
   useEffect(() => {
     fetchClothingItems();
   }, []);
   const handleAddItemSubmit = (name, imageUrl, weatherType) => {
     setIsLoading(true);
-    api.addItem(name, imageUrl, weatherType)
+    api
+      .addItem(name, imageUrl, weatherType)
       .then((item) => {
         const items = [item, ...clothingItems];
         setClothingItems(items);
@@ -175,7 +170,6 @@ const App = () => {
         setIsLoading(false);
       });
   };
- 
 
   const handleRegistration = ({ name, avatar, email, password }) => {
     return register({ name, avatar, email, password })
@@ -296,7 +290,7 @@ const App = () => {
             onClose={closeModal}
             onCardDelete={handleCardDelete}
           />
-           <LoginModal
+          <LoginModal
             isOpen={activeModal === "login"}
             type={"login"}
             onCloseModal={closeModal}
@@ -319,7 +313,7 @@ const App = () => {
             isLoading={isLoading}
           />
 
-<EditProfileModal
+          <EditProfileModal
             isOpen={activeModal === "update"}
             type={"update"}
             onCloseModal={closeModal}

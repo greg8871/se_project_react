@@ -17,4 +17,6 @@ const headers = {
   
     return { values, handleChange, setValues };
   };
-export { location, APIKey, headers };
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  
+export { location, APIKey, headers, emailRegex };
