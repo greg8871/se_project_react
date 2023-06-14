@@ -12,6 +12,7 @@ export const handleServerResponse = (res) => {
 };
 
 async function request(url, options) {
+  console.log({ url, options });
   const res = await fetch(url, options);
   return handleServerResponse(res);
 }
@@ -29,7 +30,7 @@ export const authorize = async (email, password) => {
   return request(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
-      Accept: "application/json",
+      //Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
