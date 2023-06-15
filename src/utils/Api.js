@@ -1,4 +1,6 @@
-const baseUrl = "https://my-json-server.typicode.com/greg8871/se_project_react";
+const baseUrl = //"https://my-json-server.typicode.com/greg8871/se_project_react";
+"http://localhost:3001";
+
 const headers = {
   "Content-Type": "application/json",
 };
