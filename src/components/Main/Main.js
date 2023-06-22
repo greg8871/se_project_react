@@ -24,11 +24,7 @@ function Main({ weatherData, clothingItems, handleCardClick }) {
     }
   }, [currentWeather]);
 
-  /*  const clothingChoices = React.useMemo(
-    () => clothingItems.filter((card) => card.weather === getWeatherType),
-    [getWeatherType]
-  ); */
-  console.log(clothingItems);
+  console.log(getWeatherType);
 
   return (
     <main className="main">

@@ -110,7 +110,7 @@ const App = () => {
 
   const fetchClothingItems = () => {
     api
-      .getItems()
+      .getClothingItems()
       .then((data) => {
         setClothingItems(data);
       })

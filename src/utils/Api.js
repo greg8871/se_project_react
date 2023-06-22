@@ -16,7 +16,7 @@ const handleServerResponse = (res) => {
   }
 };
 
-const getItems = async () => {
+const getClothingItems = async () => {
   const res = await fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: headers,
@@ -63,4 +63,4 @@ const removeCardLike = (_id) => {
     },
   });
 };
-export { getItems, addItem, deleteItem, removeCardLike, addCardLike };
+export { getClothingItems, addItem, deleteItem, removeCardLike, addCardLike };

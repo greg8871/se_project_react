@@ -12,8 +12,7 @@ export const handleServerResponse = (res) => {
 };
 
 async function request(url, options) {
-  console.log({ url, options });
-  const res = await fetch(url, options);
+ const res = await fetch(url, options);
   return handleServerResponse(res);
 }
 
