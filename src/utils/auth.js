@@ -12,7 +12,7 @@ export const handleServerResponse = (res) => {
 };
 
 async function request(url, options) {
- const res = await fetch(url, options);
+  const res = await fetch(url, options);
   return handleServerResponse(res);
 }
 
@@ -41,12 +41,12 @@ export const authorize = async (email, password) => {
   });
 };
 
-export const getUser = async () => {
+export const getUser = async (token) => {
   return request(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+      authorization: `Bearer ${token}`,
     },
   }).then((data) => {
     return data;
