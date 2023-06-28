@@ -90,9 +90,11 @@ const App = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
+   if (isLoggedIn) {
+    
     fetchClothingItems();
-  }, []);
-
+   }}, [isLoggedIn]);
+    
   const closeModal = () => {
     setActiveModal("");
   };
@@ -151,9 +153,7 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    fetchClothingItems();
-  }, []);
+ 
   const handleAddItemSubmit = (name, imageUrl, weatherType) => {
     setIsLoading(true);
     api

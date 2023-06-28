@@ -19,13 +19,14 @@ const LoginModal = ({
   const isValid = useMemo(() => {
     return password.length >= 8 && email.length >= 1 && email.match(emailRegex);
   }, [email, password]);
-
+  
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
+    
   };
 
   const handleSubmit = (e) => {
@@ -37,6 +38,7 @@ const LoginModal = ({
   useEffect(() => {
     setEmail("");
     setPassword("");
+    
     setShowFormError(false);
   }, [isOpen]);
 
@@ -68,10 +70,11 @@ const LoginModal = ({
       <input
         className={showFormError ? "form__input_error" : "form__input"}
         name="password"
-        type="text"
+        type="password"
         value={password}
         onChange={handlePassword}
         placeholder="Password"
+       
         required
       />
       <p className="modal__form-btn_alt" onClick={handleToggleModal}>
