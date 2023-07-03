@@ -81,6 +81,7 @@ const App = () => {
       setIsLoggedIn(true);
       getUser(token)
         .then((res) => {
+          
           setCurrentUser(res.data);
         })
         .catch((err) => {
@@ -90,11 +91,11 @@ const App = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
-   if (isLoggedIn) {
-    
-    fetchClothingItems();
-   }}, [isLoggedIn]);
-    
+    if (isLoggedIn) {
+      fetchClothingItems();
+    }
+  }, [isLoggedIn]);
+
   const closeModal = () => {
     setActiveModal("");
   };
@@ -153,7 +154,6 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
- 
   const handleAddItemSubmit = (name, imageUrl, weatherType) => {
     setIsLoading(true);
     api
@@ -174,8 +174,7 @@ const App = () => {
   const handleRegistration = ({ name, avatar, email, password }) => {
     return register({ name, avatar, email, password })
       .then((res) => {
-        setIsLoggedIn(true);
-        setCurrentUser(res);
+        // call handleAuthorization to log user in
         closeModal();
       })
       .catch((err) => console.log(err));
@@ -191,8 +190,11 @@ const App = () => {
     setIsLoading(true);
     setShowFormError(false);
     authorize(email, password)
-      .then(() => {
+      .then((res) => {
+        console.log({ res });
         setIsLoggedIn(true);
+        // setCurrentUser(res);
+
         closeModal();
       })
       .catch((err) => {

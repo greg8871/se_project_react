@@ -16,21 +16,25 @@ async function request(url, options) {
   return handleServerResponse(res);
 }
 
-export const register = ({ name, avatar, email, password }) => {
+export const register = ({ name, avatar, email, password,token }) => {
   return request(`${baseUrl}/signup`, {
     method: "POST",
-    headers: headers,
+     headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({ name, avatar, email, password }),
   });
 };
 
-export const authorize = async (email, password) => {
+export const authorize = async (email, password, token) => {
   console.log(email);
   return request(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       //Accept: "application/json",
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ email, password }),
   }).then((data) => {
