@@ -1,5 +1,6 @@
-import "./Main.css";
 import React, { useContext } from "react";
+import "./Main.css";
+
 import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnitContext";
@@ -24,7 +25,7 @@ function Main({ weatherData, clothingItems, handleCardClick }) {
     }
   }, [currentWeather]);
 
-  console.log(getWeatherType);
+  
 
   return (
     <main className="main">
@@ -36,14 +37,16 @@ function Main({ weatherData, clothingItems, handleCardClick }) {
       <ul className="main__gallery">
         {clothingItems
           .filter((card) => card.weather === getWeatherType)
-          .map((item) => (
-            <ItemCard
-              isOpen="false"
-              clothingChoice={item}
-              key={item.id.toString()}
-              onClick={() => handleCardClick(item)}
-            />
-          ))}
+          .map((item) => {
+            console.log (item)
+            return (
+              <ItemCard
+                isOpen="false"
+                clothingChoice={item}
+                key={item._id.toString()}
+                onClick={() => handleCardClick(item)} />
+            );
+          })}
       </ul>
     </main>
   );

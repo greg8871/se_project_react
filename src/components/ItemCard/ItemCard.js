@@ -3,7 +3,7 @@ import "./ItemCard.css";
 const ItemCard = ({ clothingChoice, onClick }) => {
   return (
     <li
-      key={clothingChoice.id.toString()}
+      key={clothingChoice._id.toString()}
       className="item__card"
       onClick={onClick}
     >

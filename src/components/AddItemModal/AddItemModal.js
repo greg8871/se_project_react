@@ -38,7 +38,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose, isLoading, isValid }) => {
       onClose={onClose}
       onSubmit={handleSubmit}
       onAddItem={onAddItem}
-      disabled={!isValid}
+     /*  disabled={!isValid} */
     >
       <h4 className="form__label">Name</h4>
       <input

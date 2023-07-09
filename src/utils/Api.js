@@ -1,9 +1,7 @@
-const baseUrl = //"https://my-json-server.typicode.com/greg8871/se_project_react";
+const baseUrl = 
 "http://localhost:3001";
 
-const headers = {
-  "Content-Type": "application/json",
-};
+
 function request(url, options) {
   return fetch(url, options).then(handleServerResponse);
 }
@@ -17,33 +15,41 @@ const handleServerResponse = (res) => {
 };
 
 const getClothingItems = async () => {
-  const res = await fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: "GET",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
-  return handleServerResponse(res);
 };
 
 const addItem = async (name, imageUrl, weather) => {
-  const res = await fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+       authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
     body: JSON.stringify({
       name,
       imageUrl,
       weather,
     }),
   });
-  return handleServerResponse(res);
 };
 
-const deleteItem = async (id) => {
-  const res = await fetch(`${baseUrl}/items/${id}`, {
+const deleteItem = async (_id) => {
+  return request(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+       authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
-  return handleServerResponse(res);
 };
+
+
 const addCardLike = (_id) => {
   return request(`${baseUrl}/items/${_id}/likes`, {
     method: "PUT",
@@ -63,4 +69,4 @@ const removeCardLike = (_id) => {
     },
   });
 };
-export { getClothingItems, addItem, deleteItem, removeCardLike, addCardLike };
+export { getClothingItems, addItem, deleteItem, removeCardLike, addCardLike, handleServerResponse };

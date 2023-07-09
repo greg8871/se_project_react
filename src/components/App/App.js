@@ -15,27 +15,28 @@ import { location, APIKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+
 import {
   getForecastWeather,
-  filterDataFromWeatherAPI,
-} from "../../utils/weatherApi";
+  filterDataFromWeatherAPI, } from "../../utils/weatherApi";
 import { register, authorize, getUser, updateUser } from "../../utils/auth";
 import * as api from "../../utils/Api";
 const App = () => {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-    avatar: "",
-    _id: "",
-  });
   const [weatherData, setWeatherData] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [showFormError, setShowFormError] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null); 
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    avatar: "",
+    _id: "",
+  });
+  
 
-  /*  const baseUrl = "http://localhost:3001"; */
+
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal("item");
@@ -159,8 +160,7 @@ const App = () => {
     api
       .addItem(name, imageUrl, weatherType)
       .then((item) => {
-        const items = [item, ...clothingItems];
-        setClothingItems(items);
+        setClothingItems([...clothingItems, item]);
         closeModal();
       })
       .catch((err) => {
@@ -170,11 +170,13 @@ const App = () => {
         setIsLoading(false);
       });
   };
+  
 
   const handleRegistration = ({ name, avatar, email, password }) => {
     return register({ name, avatar, email, password })
       .then((res) => {
-        // call handleAuthorization to log user in
+        setIsLoggedIn(true);
+        setCurrentUser(res);
         closeModal();
       })
       .catch((err) => console.log(err));
@@ -191,10 +193,7 @@ const App = () => {
     setShowFormError(false);
     authorize(email, password)
       .then((res) => {
-        console.log({ res });
         setIsLoggedIn(true);
-        // setCurrentUser(res);
-
         closeModal();
       })
       .catch((err) => {
@@ -276,6 +275,8 @@ const App = () => {
             type={"add"}
             onAddItem={handleAddItemSubmit}
             onClose={closeModal}
+            isLoading={isLoading}
+          
           />
 
           <ItemModal

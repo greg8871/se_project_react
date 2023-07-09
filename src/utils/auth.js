@@ -16,25 +16,22 @@ async function request(url, options) {
   return handleServerResponse(res);
 }
 
-export const register = ({ name, avatar, email, password,token }) => {
+export const register = ({ name, avatar, email, password }) => {
   return request(`${baseUrl}/signup`, {
     method: "POST",
-     headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: headers,
     body: JSON.stringify({ name, avatar, email, password }),
   });
 };
 
-export const authorize = async (email, password, token) => {
+export const authorize = async (email, password) => {
   console.log(email);
   return request(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
-      //Accept: "application/json",
+      Accept: "application/json",
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      
     },
     body: JSON.stringify({ email, password }),
   }).then((data) => {
@@ -45,12 +42,12 @@ export const authorize = async (email, password, token) => {
   });
 };
 
-export const getUser = async (token) => {
+export const getUser = async () => {
   return request(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   }).then((data) => {
     return data;

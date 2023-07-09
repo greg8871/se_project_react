@@ -50,7 +50,7 @@ const LoginModal = ({
       buttonText={isLoading ? "Loading..." : "Log in"}
       onCloseModal={onCloseModal}
       onSubmit={handleSubmit}
-      disabled={!isValid}
+      disabled={!isValid} 
     >
       <h4 className={showFormError ? "form__label_error" : "form__label"}>
         {showFormError ? "Incorrect email or password" : "Email"}
