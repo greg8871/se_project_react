@@ -9,6 +9,7 @@ function ClothesSection({
   handleCardClick,
   isLoggedIn,
   openModal,
+  handleLikeClick,
 }) {
   const currentUser = useContext(CurrentUserContext);
   return (
@@ -26,7 +27,8 @@ function ClothesSection({
       <ul className="profile__clothes-section-items">
         {clothingItems.map((item) => (
           <ItemCard
-            key={item.id.toString()}
+          clothingOption={item}
+          key={item._id}
             isOpen="false"
             clothingChoice={item}
             onClick={() => handleCardClick(item)}

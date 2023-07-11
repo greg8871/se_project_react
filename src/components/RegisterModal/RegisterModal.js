@@ -57,7 +57,7 @@ const RegisterModal = ({
       buttonText={isLoading ? "Loading..." : "Next"}
       onCloseModal={onCloseModal}
       onSubmit={handleSubmit}
-      /* disabled={!isValid} */
+      disabled={!isValid} 
     >
       <h4 className="form__label">Email*</h4>
       <input

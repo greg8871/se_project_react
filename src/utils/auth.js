@@ -25,7 +25,7 @@ export const register = ({ name, avatar, email, password }) => {
 };
 
 export const authorize = async (email, password) => {
-  console.log(email);
+  
   return request(`${baseUrl}/signin`, {
     method: "POST",
     headers: {

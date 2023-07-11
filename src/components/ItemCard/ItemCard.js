@@ -1,20 +1,45 @@
+import { useContext, useState } from "react";
 import "./ItemCard.css";
+import CurrentUserContext from "../../Contexts/CurrentUserContext";
 
-const ItemCard = ({ clothingChoice, onClick }) => {
-  return (
-    <li
-      key={clothingChoice._id.toString()}
-      className="item__card"
-      onClick={onClick}
-    >
-      <h5 className="item-card__title">{clothingChoice.name}</h5>
-      <img
-        className="item-card__image"
-        src={clothingChoice.imageUrl}
-        alt={clothingChoice.name}
-      />
-    </li>
-  );
-};
+  function ItemCard({
+    clothingOption,
+    handleCardClick,
+    handleLikeClick,
+    isLoggedIn,
+  }) {
+    const currentUser = useContext(CurrentUserContext);
+    const currentUserId = currentUser._id || null;
+    const [isLiked, setIsLiked] = useState(
+      clothingOption.likes.includes(currentUserId)
+    );
+  
+    const itemLikeButtonClassName = isLoggedIn
+      ? `${isLiked ? "card__like-btn_liked" : "card__like-btn"}`
+      : "card__like-btn_hidden";
+   
+  
+  
+      return (
+        <li className="card">
+          <div className="card__info">
+            <h5 className="card__title">{clothingOption.name}</h5>
+            <button
+              className={itemLikeButtonClassName}
+              onClick={() => {
+                handleLikeClick(clothingOption._id, isLiked);
+                setIsLiked(!isLiked);
+              }}
+            ></button>
+          </div>
+          <img
+            className="card__image"
+            src={clothingOption.imageUrl}
+            alt={clothingOption.name}
+            onClick={handleCardClick}
+          />
+        </li>
+      );
+    }
 
 export default ItemCard;
