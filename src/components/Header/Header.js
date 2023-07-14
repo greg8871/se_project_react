@@ -67,7 +67,7 @@ const Header = ({
             ) : (
               <img
                 className="header__user-icon"
-                src={avatarDefault}
+                src={currentUser.avatar}
                 alt="User avatar"
               />
             )}

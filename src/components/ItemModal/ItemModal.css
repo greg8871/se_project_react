@@ -78,6 +78,13 @@
     background-color: inherit;
     font-size: 20px;
   }
+  .popup__delete-btn_visibile {
+    visibility: visible;
+  }
+  
+  .popup__delete-btn_hidden {
+    visibility: hidden;
+  }
   
   .popup__name,
   .popup__weather {
