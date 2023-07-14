@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import logoPath from "../../images/wtwr.svg";
-import avatarDefault from "../../images/Avatar.svg";
+
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentUserContext from "../../Contexts/CurrentUserContext"
 const Header = ({
@@ -39,15 +39,7 @@ const Header = ({
           </button>
         )}
 
-      {/*   {isLoggedIn ? (
-          <button className="header__btn" type="button" onClick={openAddModal}>
-            + Add clothes
-          </button>
-        ) : (
-          <button className="header__btn" onClick={openRegisterModal}>
-            Sign up
-          </button>
-        )} */}
+     
 
         {isLoggedIn ? (
           <Link
