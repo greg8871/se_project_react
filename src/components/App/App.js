@@ -296,7 +296,7 @@ const App = () => {
           <LoginModal
             isOpen={activeModal === "login"}
             type={"login"}
-            onCloseModal={closeModal}
+            onClose={closeModal}
             handleToggleModal={handleToggleModal}
             handleLogin={handleAuthorization}
             handleProfileUpdate={handleProfileUpdate}
@@ -308,7 +308,7 @@ const App = () => {
           <RegisterModal
             isOpen={activeModal === "register"}
             type={"register"}
-            onCloseModal={closeModal}
+            onClose={closeModal}
             handleRegistration={handleRegistration}
             handleToggleModal={handleToggleModal}
             showFormError={showFormError}
@@ -319,7 +319,7 @@ const App = () => {
           <EditProfileModal
             isOpen={activeModal === "update"}
             type={"update"}
-            onCloseModal={closeModal}
+            onClose={closeModal}
             currentUser={currentUser}
             handleProfileUpdate={handleProfileUpdate}
             isLoading={isLoading}

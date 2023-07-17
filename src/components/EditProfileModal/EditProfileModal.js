@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const EditProfileModal = ({
   isOpen,
-  onCloseModal,
+  onClose,
   currentUser,
   handleProfileUpdate,
   isLoading,
@@ -22,7 +22,7 @@ const EditProfileModal = ({
       token: localStorage.getItem("token"),
     })
       .then(() => {
-        onCloseModal();
+        onClose();
       })
       .catch((err) => {
         console.log(err);
@@ -43,7 +43,7 @@ const EditProfileModal = ({
       type="update"
       title="Change profile data"
       buttonText={isLoading ? "Saving..." : "Save changes"}
-      onCloseModal={onCloseModal}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <h4>Name*</h4>

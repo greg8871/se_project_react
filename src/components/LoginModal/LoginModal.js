@@ -5,7 +5,7 @@ import { emailRegex } from "../../utils/constants";
 
 const LoginModal = ({
   isOpen,
-  onCloseModal,
+  onClose,
   handleLogin,
   handleToggleModal,
   showFormError,
@@ -48,7 +48,7 @@ const LoginModal = ({
       type="login"
       title="Log in"
       buttonText={isLoading ? "Loading..." : "Log in"}
-      onCloseModal={onCloseModal}
+      onClose={onClose}
       onSubmit={handleSubmit}
       disabled={!isValid} 
     >

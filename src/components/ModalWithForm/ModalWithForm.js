@@ -4,11 +4,12 @@ function ModalWithForm({
   type,
   title,
   buttonText,
-  onClose,
+  
   children,
   onSubmit,
   isLoading,
   disabled,
+  onClose,
 }) {
   return (
     <div

@@ -8,7 +8,7 @@
   max-width: 1360px;
   align-items: center;
   margin: auto;
-  column-gap: 20px;
+  /* column-gap: 20px; */
 }
 
 .header__logo {
@@ -41,11 +41,27 @@
   /* font-size: 20px; */
 
 }
-
+.header__user-icon_placeholder {
+  height: 40px;
+  width: 40px;
+  grid-area: e;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-family: "CabinetGrotesk-Regular", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .header__user-icon {
   height: 40px;
   width: 40px;
   grid-area: e;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 707px) and (max-width: 900px) {

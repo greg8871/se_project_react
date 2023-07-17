@@ -3,7 +3,7 @@ import React from "react";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import SideBar from "../SideBar/SideBar";
 
-function Profile({ openModal, clothingItems, handleCardClick, currentUser, handleLogout, openEditModal }) {
+function Profile({ openModal, clothingItems, handleCardClick, openAddModal, handleLikeClick, currentUser, handleLogout, openEditModal }) {
   const myClothes = clothingItems.filter(
     (item) => item.owner === currentUser._id
   );
@@ -17,7 +17,9 @@ function Profile({ openModal, clothingItems, handleCardClick, currentUser, handl
       <ClothesSection
         clothingItems={myClothes}
         openModal={openModal}
+        openAddModal={openAddModal}
         handleCardClick={handleCardClick}
+        handleLikeClick={handleLikeClick}
       />
     </div>
   );
