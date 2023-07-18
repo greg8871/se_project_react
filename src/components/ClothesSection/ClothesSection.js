@@ -8,7 +8,7 @@ function ClothesSection({
   clothingItems,
   handleCardClick,
   isLoggedIn,
-  openModal,
+  openAddModal,
   handleLikeClick,
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -19,7 +19,7 @@ function ClothesSection({
         <button
           className="profile__add-clothes-btn"
           type="button"
-          onClick={openModal}
+          onClick={openAddModal}
         >
           + Add new
         </button>
@@ -29,9 +29,9 @@ function ClothesSection({
           <ItemCard
           clothingOption={item}
           key={item._id}
-            isOpen="false"
+            /* isOpen="false" */
             clothingChoice={item}
-            onClick={() => handleCardClick(item)}
+            handleCardClick={() => handleCardClick(item)}
             isLoggedIn={isLoggedIn}
             handleLikeClick={() => {
               handleLikeClick(

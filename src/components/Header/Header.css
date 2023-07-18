@@ -22,15 +22,17 @@
   grid-area: b;
 }
 
-.header__add-button {
+.header__btn {
   margin-right: 20px;
   border: 0;
   /* font-weight: 700; */
   background-color: transparent;
   grid-area: c;
+  padding: 0px;
+  font-weight: 700; 
 }
 
-.header__add-button:hover {
+.header__btn:hover {
   cursor: pointer;
 }
 
@@ -90,7 +92,7 @@
   .header__logo {
     margin-right: 0;
   }
-  .header__add-button {
+  .header__btn {
     margin-right: 0;
   }
   .header__user-icon {
@@ -121,7 +123,7 @@
     margin: auto;
     padding-bottom: 5px;
   }
-  .header__add-button {
+  .header__btn {
     margin: 15px;
   }
   .header__logo {
