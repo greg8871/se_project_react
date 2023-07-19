@@ -24,7 +24,7 @@ function ModalWithForm({
           {children}
           {isLoading ? (
             <button
-              className="modal__form-submit-btn modal__form-submit-btn_disabled"
+              className="modal__form-submit-btn modal__form-submit-btn"
               type="submit"
             >
               Loading...

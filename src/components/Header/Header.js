@@ -24,7 +24,9 @@ const Header = ({
   return (
     <header className="header">
       <div className="header__container">
+       <Link to={"/"}>
         <img src={logoPath} alt="wtrt logo" className="header__logo" />
+        </Link>
         <h2 className="header__date">
           {currentDate}, {weatherData.city}
         </h2>

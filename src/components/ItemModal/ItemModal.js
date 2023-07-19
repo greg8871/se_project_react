@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import "./ItemModal.css";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
-function ItemModal({ isOpen, name, card, onClose, onDeleteClick }) {
+function ItemModal({ isOpen, type, card, onClose, onDeleteClick }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card?.owner === currentUser._id;
 
@@ -12,7 +12,7 @@ function ItemModal({ isOpen, name, card, onClose, onDeleteClick }) {
   return (
     <div
       className={
-        isOpen ? `popup modal_name_${name}` : `modal_name_${name} popup_closed`
+        isOpen ? `popup modal_name_${type}` : `modal_name_${type} popup_closed`
       }
     >
       <div className="popup__body">

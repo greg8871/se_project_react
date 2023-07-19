@@ -35,13 +35,13 @@ const App = () => {
     _id: "",
   });
   
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setActiveModal("item");
   };
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+ 
 
   useEffect(() => {
     if (location.latitude && location.longitude) {
@@ -126,10 +126,10 @@ const App = () => {
   };
   const handleCardDelete = () => {
     api
-      .deleteItem(selectedCard.id)
+      .deleteItem(selectedCard._id)
       .then(() => {
         setClothingItems(
-          clothingItems.filter((item) => item.id !== selectedCard.id)
+          clothingItems.filter((item) => item._id !== selectedCard._id)
         );
         setSelectedCard({});
         closeModal();
@@ -159,8 +159,8 @@ const App = () => {
     setIsLoading(true);
     api
       .addItem(name, imageUrl, weatherType)
-      .then((item) => {
-        setClothingItems([...clothingItems, item]);
+      .then(({ data }) => {
+        setClothingItems([data, ... clothingItems]);
         closeModal();
       })
       .catch((err) => {
@@ -192,7 +192,7 @@ const App = () => {
     setIsLoading(true);
     setShowFormError(false);
     authorize(email, password)
-      .then((res) => {
+      .then(() => {
         setIsLoggedIn(true);
         closeModal();
       })
