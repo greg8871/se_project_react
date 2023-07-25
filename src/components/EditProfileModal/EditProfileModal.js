@@ -16,7 +16,7 @@ const EditProfileModal = ({
   const [avatar, setAvatar] = useState("");
 
   const handleSubmit = (e) => {
-     e.preventDefault(); 
+    e.preventDefault();
     handleProfileUpdate({
       name,
       avatar,
