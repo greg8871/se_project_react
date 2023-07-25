@@ -16,18 +16,13 @@ const EditProfileModal = ({
   const [avatar, setAvatar] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    /* e.preventDefault(); */
     handleProfileUpdate({
       name,
       avatar,
       token: localStorage.getItem("token"),
     })
-      .then(() => {
-        onClose();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    
   };
 
   const handleNameInput = (e) => {
