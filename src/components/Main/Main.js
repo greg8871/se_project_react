@@ -54,13 +54,8 @@ function Main({ weatherData, clothingItems, handleCardClick, handleLikeClick,
             handleCardClick={() => handleCardClick(item)}
             isLoggedIn={isLoggedIn}
             currentUser={currentUser}
-            handleLikeClick={() => {
-              handleLikeClick(
-                item._id,
-                item.likes.includes(currentUser._id),
-                currentUser
-              );
-            }}
+            handleLikeClick={handleLikeClick}
+                   
           />
         ))}
       </ul>

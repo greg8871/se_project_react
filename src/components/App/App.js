@@ -160,6 +160,7 @@ const App = () => {
     api
       .addItem(name, imageUrl, weatherType)
       .then(({ data }) => {
+         // eslint-disable-next-line
         setClothingItems([data, ... clothingItems]);
         closeModal();
       })
@@ -209,7 +210,7 @@ const App = () => {
     setIsLoading(true);
     updateUser(name, avatar, token)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.user);
         closeModal();
       })
       .catch((err) => {
