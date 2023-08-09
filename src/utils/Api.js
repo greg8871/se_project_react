@@ -1,11 +1,16 @@
 const baseUrl = 
 "http://localhost:3001";
-
+"https://api.gcunningham.crabdance.com"
 
 function request(url, options) {
   return fetch(url, options).then(handleServerResponse);
 }
-
+const allowedOrigins = [
+  "https://gcunningham.crabdance.com",
+  "http://gcunningham.crabdance.com",
+  "https://www.gcunningham.crabdance.com",
+  "http://www.gcunningham.crabdance.com",
+  ]:
 const handleServerResponse = (res) => {
   if (res.ok) {
     return res.json();
