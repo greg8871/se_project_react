@@ -1,6 +1,7 @@
-const baseUrl = 
-"http://localhost:3001";
-"https://api.gcunningham.crabdance.com"
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.gcunningham.crabdance.com"
+    : "http://localhost:3001";
 
 function request(url, options) {
   return fetch(url, options).then(handleServerResponse);
@@ -24,6 +25,7 @@ const getClothingItems = async () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": allowedOrigins,
       authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
@@ -34,7 +36,8 @@ const addItem = async (name, imageUrl, weather) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-       authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Access-Control-Allow-Origin": allowedOrigins,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       name,
@@ -49,11 +52,11 @@ const deleteItem = async (_id) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-       authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Access-Control-Allow-Origin": allowedOrigins,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
 };
-
 
 const addCardLike = (_id) => {
   return request(`${baseUrl}/items/${_id}/likes`, {
@@ -74,4 +77,11 @@ const removeCardLike = (_id) => {
     },
   });
 };
-export { getClothingItems, addItem, deleteItem, removeCardLike, addCardLike, handleServerResponse };
+export {
+  getClothingItems,
+  addItem,
+  deleteItem,
+  removeCardLike,
+  addCardLike,
+  handleServerResponse,
+};

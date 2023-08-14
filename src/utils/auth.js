@@ -1,7 +1,10 @@
 import { headers } from "./constants";
 
 const baseUrl =
-  process.env.NODE_ENV === "production" ? "" : "http://localhost:3001";
+  process.env.NODE_ENV === "production"
+    ? "https://api.gcunningham.crabdance.com"
+    : "http://localhost:3001";
+
 
 export const handleServerResponse = (res) => {
   if (res.ok) {
