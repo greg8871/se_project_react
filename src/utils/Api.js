@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.gcunningham.crabdance.com"
     : "http://localhost:3001";
+=======
+const baseUrl = 
+"http://localhost:3001";
+"https://api.gcunningham.crabdance.com"
+>>>>>>> a6c7464e8f8a1a16083f7c7866522bda5cde0b15
 
 function request(url, options) {
   return fetch(url, options).then(handleServerResponse);
@@ -11,7 +17,11 @@ const allowedOrigins = [
   "http://gcunningham.crabdance.com",
   "https://www.gcunningham.crabdance.com",
   "http://www.gcunningham.crabdance.com",
+<<<<<<< HEAD
 ];
+=======
+  ]:
+>>>>>>> a6c7464e8f8a1a16083f7c7866522bda5cde0b15
 const handleServerResponse = (res) => {
   if (res.ok) {
     return res.json();
