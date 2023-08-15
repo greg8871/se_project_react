@@ -8,8 +8,8 @@ The idea of the application is pretty simple - we make a call to an API, which t
 
 - [Figma Design](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
 
-Link to backend https://github.com/jendoc/se_project_express.git
-
+Link to backend https://github.com/greg8871/se_project_express.git
+            	api.gcunningham.crabdance.com
 # WTWR (What to Wear?)
 
 Simple weather app created with React to help users decide what to wear based on the current weather.
