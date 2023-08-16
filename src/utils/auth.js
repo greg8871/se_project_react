@@ -63,7 +63,7 @@ export const updateUser = async (name, avatar, token) => {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({ name, avatar }),
   });
